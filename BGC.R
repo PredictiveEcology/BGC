@@ -3,8 +3,7 @@ defineModule(sim, list(
   description = "Run Biome BGC from R",
   keywords = "",
   authors = c(
-    person(c("Alex", "M"), "Chubaty", role = c("aut", "cre"),
-           email = "achubaty@for-cast.ca"),
+    person(c("Alex", "M"), "Chubaty", email = "achubaty@for-cast.ca", role = c("aut", "cre")),
     person("Celine", "Boisvenue", email = "celine.boisvenue@nrcan-rncan.gc.ca", role = c("aut"))
   ),
   childModules = character(0),
