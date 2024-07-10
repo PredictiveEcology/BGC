@@ -1,102 +1,93 @@
 ---
-title: "BGC"
-author: "achubaty"
-date: "03 December 2021"
+title: "BGC Manual"
+subtitle: "v.`r SpaDES.core::moduleMetadata(module = 'BGC', path = '..')$version`"
+date: "Last updated: `r Sys.Date()`"
 output:
-  html_document:
+  bookdown::html_document2:
+    toc: true
+    toc_float: true
+    theme: sandstone
+    number_sections: false
+    df_print: paged
     keep_md: yes
 editor_options:
   chunk_output_type: console
+  bibliography: citations/references_BGC.bib
+link-citations: true
+always_allow_html: true
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE, results = "hold") ## TODO: use 'eval = TRUE'
+# BGC Module
+
+<!-- the following are text references used in captions for LaTeX compatibility -->
+(ref:BGC) *BGC*
+
+```{r setup-BGC, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE, results = "hold") ## change to eval = TRUE if all chunks are to be evaluated
 ```
 
-# Overview
+<!-- if knitting to pdf remember to add the pandoc_args: ["--extract-media", "."] option to yml in order to get the badge images -->
 
-Provide an overview of what the module does / how to use the module.
+#### Authors:
+
+`r paste(as.character(SpaDES.core::moduleMetadata(module = "BGC", path = '..')$authors), sep = ', ')`
+<!-- ideally separate authors with new lines, '\n' not working -->
+
+## Module Overview
+
+### Module summary
+
+Provide a brief summary of what the module does / how to use the module.
 
 Module documentation should be written so that others can use your module.
 This is a template for module documentation, and should be changed to reflect your module.
 
-## R Markdown
+### Module inputs and parameters
 
-R Markdown syntax allows R code, outputs, and figures to be rendered in the documentation.
+sufficient.
+Table \@ref(tab:moduleInputs-BGC) shows the full list of module inputs.
 
-For help writing in R Markdown, see https://rmarkdown.rstudio.com/.
-
-# Usage
-
-```{r packages}
-library(SpaDES.core)
+```{r moduleInputs-BGC, echo = FALSE, eval = TRUE, message = FALSE, warning = FALSE}
+df_inputs <- SpaDES.core::moduleInputs("BGC", "..")
+knitr::kable(df_inputs,
+             caption = "List of (ref:BGC) input objects and their description.") |>
+  kableExtra::kable_styling(latex_options = "scale_down", full_width = TRUE)
 ```
 
-```{r module_usage}
-setPaths(modulePath = file.path(".."))
-getPaths() # shows where the 4 relevant paths are
+Table \@ref(tab:moduleParams-BGC) shows the full list of module parameters.
 
-times <- list(start = 0, end = 10)
-
-parameters <- list(
-  #.progress = list(type = "text", interval = 1), # for a progress bar
-  ## If there are further modules, each can have its own set of parameters:
-  #module1 = list(param1 = value1, param2 = value2),
-  #module2 = list(param1 = value1, param2 = value2)
-)
-modules <- list("BGC")
-objects <- list()
-inputs <- list()
-outputs <- list()
-
-mySim <- simInit(times = times, params = parameters, modules = modules,
-                 objects = objects)
-
-mySimOut <- spades(mySim)
-```
-
-# Parameters
-
-Provide a summary of user-visible parameters.
-
-```{r moduleParams, echo = FALSE, eval = TRUE}
+```{r moduleParams-BGC, echo = FALSE, eval = TRUE, message = FALSE, warning = FALSE}
 df_params <- SpaDES.core::moduleParams("BGC", "..")
-knitr::kable(df_params)
+knitr::kable(df_params, caption = "List of (ref:BGC) parameters and their description.") |>
+  kableExtra::kable_styling(latex_options = "scale_down", full_width = TRUE)
 ```
 
-# Events
+### Events
 
 Describe what happens for each event type.
 
-## Plotting
+### Plotting
 
 Write what is plotted.
 
-## Saving
+### Saving
 
 Write what is saved.
 
-# Data dependencies
+### Module outputs
 
-## Input data
+Description of the module outputs (Table \@ref(tab:moduleOutputs-BGC)).
 
-How to obtain input data, and a description of the data required by the module.
-If `sourceURL` is specified, `downloadData("BGC", "..")` may be sufficient.
-
-```{r moduleInputs, echo = FALSE, eval = TRUE}
-df_inputs <- SpaDES.core::moduleInputs("BGC", "..")
-knitr::kable(df_inputs)
-```
-
-## Output data
-
-Description of the module outputs.
-
-```{r moduleOutputs, echo = FALSE, eval = TRUE}
+```{r moduleOutputs-BGC, echo = FALSE, eval = TRUE, message = FALSE, warning = FALSE}
 df_outputs <- SpaDES.core::moduleOutputs("BGC", "..")
-knitr::kable(df_outputs)
+knitr::kable(df_outputs, caption = "List of (ref:BGC) outputs and their description.") |>
+  kableExtra::kable_styling(latex_options = "scale_down", full_width = TRUE)
 ```
 
-# Links to other modules
+### Links to other modules
 
-Describe any anticipated linkages to other modules.
+Describe any anticipated linkages to other modules, such as modules that supply input data or do post-hoc analysis.
+
+### Getting help
+
+- <https://github.com/PredictiveEcology/BGC/issues>
